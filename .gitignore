@@ -1,0 +1,8 @@
+!*.cpp
+*.exe
+*.o
+*.cbp
+*.layout
+*.depend
+/bin/Debug/*
+/obj/Debug/*
