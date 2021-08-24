@@ -9,12 +9,6 @@ struct Cards {
     SilverMedicalCard *pSilverMedicalCard;
 };
 
-/*
-Don't have enough time to finish this task. push(), pop(), front() and container for bool
-*/
-
-
-
 int main()
 {
     //Create container
@@ -33,8 +27,18 @@ int main()
     cards.pBaseMedicalCard->SetPhoneNumber("81235551234");
     cards.pBaseMedicalCard->SetPost("-");
     cards.pBaseMedicalCard->Age = 28;
-    (*container)[0] = cards;
 
+    // Check push and pop methods
+    (*container).push(cards);
+    cout << "There is only " << (*container).getValuesQuantity() << " value in container."<< endl;
+    Cards cards_pop = (*container).pop();
+    cout << "There is " << (*container).getValuesQuantity() << " value in container."<< endl;
+
+    // Check returned value
+    cout <<  "BaseMedicalCard PatientID in returned pop() method value is " << cards_pop.pBaseMedicalCard->GetPatientID() << endl;
+
+    // Add value (in overrided [] there is a check to avoid
+    (*container).push(cards);
     cout << "BaseMedicalCard PatientID " << (*container)[0].pBaseMedicalCard->GetPatientID() << endl;
 
     cout << "The first patient was from " << cards.pBaseMedicalCard->GetResidenceAddress() << "." << endl;
@@ -49,7 +53,9 @@ int main()
     // Create new card silver level
     Cards new_card;
     new_card.pSilverMedicalCard = new SilverMedicalCard();
-    (*container)[1] = new_card;
+    (*container).push(new_card);
+    cout << "There are " << (*container).getValuesQuantity() << " values in container."<< endl << endl;
+    cout << "Check front() method. The first value in container has the following FirstName: " << (*container).front().pBaseMedicalCard->FirstName << endl << endl;
 
     // Check that it's empty
     cout << "This is a empty silver medical card" << endl;
